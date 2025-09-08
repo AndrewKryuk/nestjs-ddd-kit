@@ -1,0 +1,12 @@
+export const ERROR_CODES = {
+  INVALID_INPUT: 'INPUT-001',
+  DB_ERROR: 'DB-001',
+  KAFKA_ERROR: 'KAFKA-001',
+  HTTP_UNAUTHORIZED: 'AUTH-001',
+  GRPC_UNAUTHORIZED: 'AUTH-002',
+  FORBIDDEN: 'AUTH-003',
+  S3_ERROR: 'S3-001',
+};
+
+export const SUCCEED_CODE = 'ok';
+export const ERROR_CODE = 'error';
