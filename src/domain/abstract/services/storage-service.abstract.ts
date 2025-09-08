@@ -1,20 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { Request } from 'express';
+import { IOauthUser } from '../../interfaces/oauth/oauth-user.interface';
 
 @Injectable()
 export abstract class StorageServiceAbstract {
   /**
    * Is used to set request-scoped data
    */
-  set: <T>(key: string | symbol, value: T) => void;
+  abstract set<T>(key: string | symbol, value: T): void;
 
   /**
    * Is used to get request-scoped data
    */
-  get: <T>(key: string | symbol) => T;
+  abstract get<T>(key: string | symbol): T;
 
   /**
    * Is used to get request
    */
-  getRequest: () => Request;
+  abstract getRequest(): Record<string, any> & { user?: IOauthUser };
 }

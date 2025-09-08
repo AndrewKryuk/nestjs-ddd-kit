@@ -1,10 +1,9 @@
 import { DomainException } from './domain-exception';
-import { HttpStatus } from '@nestjs/common';
+import { EHttpStatus } from '../../../domain/enums/http-status.enum';
 import { httpStatus } from '../../decorators/http-status.decorator';
 import { grpcStatus } from '../../decorators/grpc-status.decorator';
+import { EGrpcStatus } from '../../../domain/enums/grpc-status.enum';
 
-import { status } from '@grpc/grpc-js';
-
-@httpStatus(HttpStatus.CONFLICT)
-@grpcStatus(status.ALREADY_EXISTS)
+@httpStatus(EHttpStatus.CONFLICT)
+@grpcStatus(EGrpcStatus.ALREADY_EXISTS)
 export class ConflictException extends DomainException {}

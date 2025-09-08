@@ -1,4 +1,4 @@
-import { MongooseConfigAbstract } from '../../domain/abstract/configuration/mongoose-config.abstract';
+import { MongooseConfigAbstract } from '../../application/abstract/configuration/mongoose-config.abstract';
 
 export const mongooseConfigFactory: () => MongooseConfigAbstract = () => ({
   options: {

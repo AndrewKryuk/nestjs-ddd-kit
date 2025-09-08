@@ -4,20 +4,20 @@ export abstract class CacheServiceAbstract {
    * If ttl is not specified,
    * ttl will be equal to process.env.CACHE_TTL value or 10 minutes
    */
-  set: <T>(key: number | string, value: T, ttl?: number) => Promise<void>;
+  abstract set<T>(key: number | string, value: T, ttl?: number): Promise<void>;
 
   /**
    * Is used to get cached value by key or get undefined
    */
-  get: <T>(key: number | string) => Promise<T | undefined>;
+  abstract get<T>(key: number | string): Promise<T | undefined>;
 
   /**
    * Is used to delete cached value by key
    */
-  del: (key: number | string) => Promise<void>;
+  abstract del(key: number | string): Promise<void>;
 
   /**
    * Is used to flush all cached values
    */
-  reset: () => Promise<void>;
+  abstract reset(): Promise<void>;
 }

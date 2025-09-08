@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { CacheConfigAbstract } from '../../domain/abstract/configuration/cache-config.abstract';
+import { CacheConfigAbstract } from '../../application/abstract/configuration/cache-config.abstract';
 
 const { CACHE_TTL, REDIS_URL } = process.env;
 

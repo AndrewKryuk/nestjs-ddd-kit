@@ -1,5 +1,5 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { TypeormConfigAbstract } from '../../domain/abstract/configuration/typeorm-config.abstract';
+import { TypeormConfigAbstract } from '../../application/abstract/configuration/typeorm-config.abstract';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 export const typeormConfigFactory: () => TypeormConfigAbstract = () => ({

@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { KafkaConfigAbstract } from '../../domain/abstract/configuration/kafka-config.abstract';
+import { KafkaConfigAbstract } from '../../application/abstract/configuration/kafka-config.abstract';
 
 const {
   KAFKA_URL,

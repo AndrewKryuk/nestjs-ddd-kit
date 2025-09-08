@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { BroadcastConfigAbstract } from '../../domain/abstract/configuration/broadcast-config.abstract';
+import { BroadcastConfigAbstract } from '../../application/abstract/configuration/broadcast-config.abstract';
 
 const { BROADCAST_KAFKA_TOPIC } = process.env;
 

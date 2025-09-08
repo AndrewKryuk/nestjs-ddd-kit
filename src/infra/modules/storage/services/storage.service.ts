@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CLS_REQ, ClsService } from 'nestjs-cls';
-import { StorageServiceAbstract } from '../abstract/storage-service.abstract';
 import { Request } from 'express';
+import { StorageServiceAbstract } from '../../../../domain/abstract/services/storage-service.abstract';
 
 @Injectable()
 export class StorageService implements StorageServiceAbstract {

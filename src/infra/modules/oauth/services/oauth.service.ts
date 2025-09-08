@@ -1,8 +1,8 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { IOauthUser } from '../interfaces/oauth-user.interface';
 import { BaseClient, Issuer } from 'openid-client';
 import { OauthServiceAbstract } from '../../../../domain/abstract/services/oauth-service.abstract';
 import { oauthConfigFactory } from '../../../configuration/oauth-config.factory';
+import { IOauthUser } from '../../../../domain/interfaces/oauth/oauth-user.interface';
 
 @Injectable()
 export class OauthService implements OnModuleInit, OauthServiceAbstract {

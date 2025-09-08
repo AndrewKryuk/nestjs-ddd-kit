@@ -6,12 +6,8 @@ import {
   NextCall,
 } from '@grpc/grpc-js';
 import { IGrpcInterceptor } from '../interfaces/grpc-interceptor.interface';
-import { StorageServiceAbstract } from '../../../infra/modules/storage/abstract/storage-service.abstract';
-import {
-  CLS_GRPC_CONTEXT,
-  CLS_USER,
-  CLS_USER_INTERNAL_PERMISSIONS,
-} from '../../../infra/modules/storage/tokens';
+import { StorageServiceAbstract } from '../../../domain/abstract/services/storage-service.abstract';
+import { CLS_GRPC_CONTEXT, CLS_USER, CLS_USER_INTERNAL_PERMISSIONS } from '../../../domain/tokens/cls.tokens';
 
 @Injectable()
 export class GrpcMetadataInterceptor implements IGrpcInterceptor {

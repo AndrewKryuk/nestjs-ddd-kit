@@ -7,8 +7,8 @@ import {
 } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
-import { IOauthUser } from '../../infra/modules/oauth/interfaces/oauth-user.interface';
 import { ERROR_CODES } from '../../domain/constants/error-codes';
+import { IOauthUser } from '../../domain/interfaces/oauth/oauth-user.interface';
 
 export const OauthMiddlewareCreator = (options: {
   userProvider?: <T>(token?: string, userInfo?: IOauthUser) => Promise<T> | T;
@@ -27,9 +27,13 @@ export const OauthMiddlewareCreator = (options: {
       try {
         const userInfo: IOauthUser = await this.jwtService.verifyAsync(token);
 
-        request['user'] = options?.userProvider
-          ? await options.userProvider(token, userInfo)
-          : userInfo;
+        Reflect.set(
+          request,
+          'user',
+          options?.userProvider
+            ? await options.userProvider(token, userInfo)
+            : userInfo,
+        );
       } catch (e: any) {
         return this.throwError(response, e?.message);
       }

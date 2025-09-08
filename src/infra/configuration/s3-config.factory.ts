@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { S3ConfigAbstract } from '../../domain/abstract/configuration/s3-config.abstract';
+import { S3ConfigAbstract } from '../../application/abstract/configuration/s3-config.abstract';
 
 const {
   AWS_REGION,

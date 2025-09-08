@@ -1,11 +1,11 @@
 import { IError } from '../interfaces/error.interface';
-import { HttpStatus } from '@nestjs/common';
-import { status } from '@grpc/grpc-js';
 import { httpStatus } from '../../decorators/http-status.decorator';
 import { grpcStatus } from '../../decorators/grpc-status.decorator';
+import { EHttpStatus } from '../../../domain/enums/http-status.enum';
+import { EGrpcStatus } from '../../../domain/enums/grpc-status.enum';
 
-@httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-@grpcStatus(status.UNKNOWN)
+@httpStatus(EHttpStatus.INTERNAL_SERVER_ERROR)
+@grpcStatus(EGrpcStatus.UNKNOWN)
 export abstract class BaseException extends Error {
   constructor(
     protected readonly errors: IError[],

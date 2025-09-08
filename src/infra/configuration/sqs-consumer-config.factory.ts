@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { SqsConsumerConfigAbstract } from '../../domain/abstract/configuration/sqs-consumer-config.abstract';
+import { SqsConsumerConfigAbstract } from '../../application/abstract/configuration/sqs-consumer-config.abstract';
 import { SQSClient } from '@aws-sdk/client-sqs';
 
 const {

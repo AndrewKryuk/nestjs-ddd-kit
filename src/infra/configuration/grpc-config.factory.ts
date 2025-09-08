@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { GrpcConfigAbstract } from '../../domain/abstract/configuration/grpc-config.abstract';
+import { GrpcConfigAbstract } from '../../application/abstract/configuration/grpc-config.abstract';
 
 const { GRPC_HOST, GRPC_PORT } = process.env;
 

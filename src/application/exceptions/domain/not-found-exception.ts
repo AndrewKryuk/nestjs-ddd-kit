@@ -1,9 +1,9 @@
 import { DomainException } from './domain-exception';
-import { HttpStatus } from '@nestjs/common';
-import { status } from '@grpc/grpc-js';
+import { EHttpStatus } from '../../../domain/enums/http-status.enum';
+import { EGrpcStatus } from '../../../domain/enums/grpc-status.enum';
 import { httpStatus } from '../../decorators/http-status.decorator';
 import { grpcStatus } from '../../decorators/grpc-status.decorator';
 
-@httpStatus(HttpStatus.NOT_FOUND)
-@grpcStatus(status.NOT_FOUND)
+@httpStatus(EHttpStatus.NOT_FOUND)
+@grpcStatus(EGrpcStatus.NOT_FOUND)
 export class NotFoundException extends DomainException {}

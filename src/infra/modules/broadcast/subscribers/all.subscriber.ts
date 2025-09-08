@@ -11,16 +11,16 @@ import { OnModuleInit } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import * as process from 'process';
 import { context, trace } from '@opentelemetry/api';
-import { IBroadcastMessage } from '../interfaces/broadcast-message.interface';
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
-import { StorageServiceAbstract } from '../../storage/abstract/storage-service.abstract';
-import { BroadcastConfigAbstract } from '../../../../domain/abstract/configuration/broadcast-config.abstract';
+import { BroadcastConfigAbstract } from '../../../../application/abstract/configuration/broadcast-config.abstract';
 import { TTypeormEvent } from '../types/typeorm-event.type';
-import { CLS_GRPC_CONTEXT } from '../../storage/tokens';
-import { IBroadcastProps } from '../interfaces/broadcast-props.interface';
 import { ProducerAdapterAbstract } from '../../../../domain/abstract/adapters/producer-adapter.abstract';
 import { camelToSnake } from '../../../../application/utils/camel-to-snake';
 import { BaseTypeOrmEntity } from '../../../base/base-type-orm.entity';
+import { IBroadcastProps } from '../../../../domain/interfaces/broadcast/broadcast-props.interface';
+import { IBroadcastMessage } from '../../../../domain/interfaces/broadcast/broadcast-message.interface';
+import { StorageServiceAbstract } from '../../../../domain/abstract/services/storage-service.abstract';
+import { CLS_GRPC_CONTEXT } from '../../../../domain/tokens/cls.tokens';
 
 @EventSubscriber()
 export class AllSubscriber implements EntitySubscriberInterface, OnModuleInit {

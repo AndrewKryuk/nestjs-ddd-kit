@@ -1,8 +1,8 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { IOauthUser } from '../../infra/modules/oauth/interfaces/oauth-user.interface';
 import { UnauthorizedException } from '../../application/exceptions/infra/unauthorized-exception';
 import { ERROR_CODES } from '../../domain/constants/error-codes';
+import { IOauthUser } from '../../domain/interfaces/oauth/oauth-user.interface';
 
 @Injectable()
 export class GrpcOauthGuard implements CanActivate {

@@ -1,9 +1,9 @@
 import { TransportException } from './transport-exception';
-import { HttpStatus } from '@nestjs/common';
-import { status } from '@grpc/grpc-js';
+import { EHttpStatus } from '../../../domain/enums/http-status.enum';
+import { EGrpcStatus } from '../../../domain/enums/grpc-status.enum';
 import { httpStatus } from '../../decorators/http-status.decorator';
 import { grpcStatus } from '../../decorators/grpc-status.decorator';
 
-@httpStatus(HttpStatus.FORBIDDEN)
-@grpcStatus(status.PERMISSION_DENIED)
+@httpStatus(EHttpStatus.FORBIDDEN)
+@grpcStatus(EGrpcStatus.PERMISSION_DENIED)
 export class ForbiddenException extends TransportException {}
