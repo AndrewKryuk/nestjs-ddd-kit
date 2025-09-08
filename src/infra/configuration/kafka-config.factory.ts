@@ -1,5 +1,6 @@
 import * as process from 'process';
 import { KafkaConfigAbstract } from '../../application/abstract/configuration/kafka-config.abstract';
+import { cleanEnv, json } from 'envalid';
 
 const {
   KAFKA_URL,
@@ -7,10 +8,9 @@ const {
   KAFKA_PASSWORD,
   KAFKA_SSL,
   KAFKA_GROUP_ID,
-  KAFKA_TOPIC,
 } = process.env;
 
-export const kafkaConfigFactory: () => KafkaConfigAbstract = () => ({
+export const kafkaConfigFactory: () => KafkaConfigAbstract = () => cleanEnv({
   options: {
     client: {
       brokers: [KAFKA_URL ?? ''],
@@ -29,4 +29,6 @@ export const kafkaConfigFactory: () => KafkaConfigAbstract = () => ({
       allowAutoTopicCreation: true,
     },
   },
+}, {
+  options: json()
 });
