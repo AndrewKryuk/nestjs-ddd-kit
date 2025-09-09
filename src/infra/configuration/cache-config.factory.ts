@@ -1,22 +1,18 @@
-import * as process from 'process';
 import { CacheConfigAbstract } from '../../application/abstract/configuration/cache-config.abstract';
-import { cleanEnv, num } from 'envalid';
-import { objectValidator } from './validators/object.validator';
+import { cleanEnv, num, str } from 'envalid';
 
-const { CACHE_TTL, REDIS_URL } = process.env;
+export const cacheConfigFactory: () => CacheConfigAbstract = () => {
+  const env = cleanEnv(process.env, {
+    CACHE_TTL: num({ default: 60 * 10 }),
+    REDIS_URL: str({ default: undefined }),
+  });
 
-export const cacheConfigFactory: () => CacheConfigAbstract = () =>
-  cleanEnv(
-    {
-      ttl: Number(CACHE_TTL || 60 * 10),
-      redis: REDIS_URL
-        ? {
-            url: REDIS_URL,
-          }
-        : undefined,
-    },
-    {
-      ttl: num(),
-      redis: objectValidator<{ url: string }>({ default: undefined }),
-    },
-  );
+  return {
+    ttl: env.CACHE_TTL,
+    redis: env.REDIS_URL
+      ? {
+          url: env.REDIS_URL,
+        }
+      : undefined,
+  };
+};

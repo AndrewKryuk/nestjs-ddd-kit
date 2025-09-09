@@ -1,11 +1,13 @@
-import * as process from 'process';
 import { GrpcConfigAbstract } from '../../application/abstract/configuration/grpc-config.abstract';
-import { cleanEnv, str } from 'envalid';
+import { cleanEnv, num, str } from 'envalid';
 
-const { GRPC_HOST, GRPC_PORT } = process.env;
+export const grpcConfigFactory: () => GrpcConfigAbstract = () => {
+  const env = cleanEnv(process.env, {
+    GRPC_HOST: str({ default: '0.0.0.0' }),
+    GRPC_PORT: num({ default: 5000 }),
+  });
 
-export const grpcConfigFactory: () => GrpcConfigAbstract = () => cleanEnv({
-  url: !GRPC_HOST || !GRPC_PORT ? '0.0.0.0:5000' : `${GRPC_HOST}:${GRPC_PORT}`,
-}, {
-  url: str()
-});
+  return {
+    url: `${env.GRPC_HOST}:${env.GRPC_PORT}`,
+  };
+};
