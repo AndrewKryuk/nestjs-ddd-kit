@@ -1,7 +1,8 @@
 import * as process from 'process';
 import { SqsConsumerConfigAbstract } from '../../application/abstract/configuration/sqs-consumer-config.abstract';
 import { SQSClient } from '@aws-sdk/client-sqs';
-import { cleanEnv, json } from 'envalid';
+import { cleanEnv } from 'envalid';
+import { objectValidator } from './validators/object.validator';
 
 const {
   SQS_QUEUE_NAME,
@@ -37,6 +38,6 @@ export const sqsConsumerConfigFactory: () => SqsConsumerConfigAbstract = () =>
           : undefined,
     },
     {
-      options: json({ default: undefined }),
+      options: objectValidator({ default: undefined }),
     },
   );

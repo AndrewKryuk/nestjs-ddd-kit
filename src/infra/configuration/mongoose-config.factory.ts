@@ -1,5 +1,6 @@
 import { MongooseConfigAbstract } from '../../application/abstract/configuration/mongoose-config.abstract';
-import { cleanEnv, json } from 'envalid';
+import { cleanEnv } from 'envalid';
+import { objectValidator } from './validators/object.validator';
 
 export const mongooseConfigFactory: () => MongooseConfigAbstract = () =>
   cleanEnv(
@@ -9,6 +10,6 @@ export const mongooseConfigFactory: () => MongooseConfigAbstract = () =>
       },
     },
     {
-      options: json(),
+      options: objectValidator(),
     },
   );

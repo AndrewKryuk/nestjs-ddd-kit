@@ -1,7 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { TypeormConfigAbstract } from '../../application/abstract/configuration/typeorm-config.abstract';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { cleanEnv, json } from 'envalid';
+import { cleanEnv } from 'envalid';
+import { objectValidator } from './validators/object.validator';
 
 export const typeormConfigFactory: () => TypeormConfigAbstract = () =>
   cleanEnv(
@@ -22,7 +23,7 @@ export const typeormConfigFactory: () => TypeormConfigAbstract = () =>
       },
     },
     {
-      options: json(),
+      options: objectValidator(),
     },
   );
 

@@ -1,6 +1,7 @@
 import * as process from 'process';
 import { CacheConfigAbstract } from '../../application/abstract/configuration/cache-config.abstract';
-import { cleanEnv, json, num } from 'envalid';
+import { cleanEnv, num } from 'envalid';
+import { objectValidator } from './validators/object.validator';
 
 const { CACHE_TTL, REDIS_URL } = process.env;
 
@@ -16,6 +17,6 @@ export const cacheConfigFactory: () => CacheConfigAbstract = () =>
     },
     {
       ttl: num(),
-      redis: json<{ url: string }>({ default: undefined }),
+      redis: objectValidator<{ url: string }>({ default: undefined }),
     },
   );

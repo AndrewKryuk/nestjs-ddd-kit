@@ -1,6 +1,7 @@
 import * as process from 'process';
 import { KafkaConfigAbstract } from '../../application/abstract/configuration/kafka-config.abstract';
-import { cleanEnv, json } from 'envalid';
+import { cleanEnv } from 'envalid';
+import { objectValidator } from './validators/object.validator';
 
 const {
   KAFKA_URL,
@@ -30,5 +31,5 @@ export const kafkaConfigFactory: () => KafkaConfigAbstract = () => cleanEnv({
     },
   },
 }, {
-  options: json()
+  options: objectValidator()
 });

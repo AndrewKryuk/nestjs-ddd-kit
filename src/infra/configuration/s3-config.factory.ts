@@ -1,6 +1,7 @@
 import * as process from 'process';
 import { S3ConfigAbstract } from '../../application/abstract/configuration/s3-config.abstract';
-import { cleanEnv, json, str } from 'envalid';
+import { cleanEnv, str } from 'envalid';
+import { objectValidator } from './validators/object.validator';
 
 const {
   AWS_REGION,
@@ -28,7 +29,7 @@ export const s3ConfigFactory: () => S3ConfigAbstract = () =>
       bucket: S3_BUCKET,
     },
     {
-      options: json({ default: undefined }),
+      options: objectValidator({ default: undefined }),
       bucket: str(),
     },
   );
