@@ -20,4 +20,8 @@ export abstract class BaseRepositoryAbstract<
   abstract softDelete(id: string): Promise<Partial<DomainModel>>;
 
   abstract delete(id: string): Promise<Partial<DomainModel>>;
+
+  abstract bulkDelete(
+    domainEntities: DomainModel[],
+  ): Promise<{ deletedCount: number }>;
 }

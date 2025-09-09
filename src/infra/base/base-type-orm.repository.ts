@@ -52,6 +52,22 @@ export class BaseTypeOrmRepository<
     return createdEntities.map((createdEntity) => createdEntity.toDomain());
   }
 
+  @Log({ level: 'debug' })
+  async bulkDelete(
+    domainEntities: DomainModel[],
+  ): Promise<{ deletedCount: number }> {
+    let deletedEntities: TypeOrmModel[] = [];
+
+    if (domainEntities.length) {
+      deletedEntities = await this.repository.remove(
+        domainEntities.map((domainEntity) =>
+          this.entityClass.fromDomain(domainEntity),
+        ),
+      );
+    }
+    return { deletedCount: deletedEntities.length };
+  }
+
   public async search(
     criteria: ICriteria,
   ): Promise<IPaginatedResult<DomainModel>> {
