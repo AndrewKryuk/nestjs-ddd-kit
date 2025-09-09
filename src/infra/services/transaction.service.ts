@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { TransactionServiceAbstract } from '../../domain/abstract/services/transaction-service.abstract';
+import { InjectDataSource } from '@nestjs/typeorm';
 
 @Injectable()
 export class TransactionService implements TransactionServiceAbstract {
-  constructor(private readonly dataSource: DataSource) {}
+  constructor(@InjectDataSource() private readonly dataSource: DataSource) {}
 
   async withTransaction<T>(
     callback: () => Promise<T>,
