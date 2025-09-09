@@ -3,6 +3,7 @@ import { SqsConsumerConfigAbstract } from '../../application/abstract/configurat
 import { SQSClient } from '@aws-sdk/client-sqs';
 import { cleanEnv } from 'envalid';
 import { objectValidator } from './validators/object.validator';
+import { SqsConsumerOptions } from '@ssut/nestjs-sqs/dist/sqs.types';
 
 const {
   SQS_QUEUE_NAME,
@@ -38,6 +39,6 @@ export const sqsConsumerConfigFactory: () => SqsConsumerConfigAbstract = () =>
           : undefined,
     },
     {
-      options: objectValidator({ default: undefined }),
+      options: objectValidator<SqsConsumerOptions>({ default: undefined }),
     },
   );

@@ -1,12 +1,11 @@
-import { makeStructuredValidator } from 'envalid/src/makers';
-import { EnvError } from 'envalid/src/errors';
+import { makeValidator, EnvError } from 'envalid';
 
-export const objectValidator = makeStructuredValidator((value: any) => {
+export const objectValidator = makeValidator((value: unknown) => {
   const isObject =
     typeof value === 'object' && value !== null && !Array.isArray(value);
 
   if (isObject) {
-    return value;
+    return value as Record<string, unknown>;
   } else {
     throw new EnvError(`Invalid object: "${value}"`);
   }
