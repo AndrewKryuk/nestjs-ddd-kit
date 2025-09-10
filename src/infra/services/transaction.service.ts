@@ -1,33 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { DataSource } from 'typeorm';
 import { TransactionServiceAbstract } from '../../domain/abstract/services/transaction-service.abstract';
-import { InjectDataSource } from '@nestjs/typeorm';
+import {
+  IsolationLevel,
+  Propagation,
+  runInTransaction,
+} from 'typeorm-transactional';
 
 @Injectable()
 export class TransactionService implements TransactionServiceAbstract {
-  constructor(@InjectDataSource() private readonly dataSource: DataSource) {}
+  constructor() {}
 
   async withTransaction<T>(
     callback: () => Promise<T>,
-    isolationLevel:
-      | 'READ UNCOMMITTED'
-      | 'READ COMMITTED'
-      | 'REPEATABLE READ'
-      | 'SERIALIZABLE' = 'READ COMMITTED',
+    isolationLevel: IsolationLevel = IsolationLevel.READ_COMMITTED,
+    propagation: Propagation = Propagation.REQUIRED,
   ): Promise<T> {
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction(isolationLevel);
-
     try {
-      const result = await callback();
-      await queryRunner.commitTransaction();
-      return result;
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
+      return await runInTransaction(callback, { isolationLevel, propagation });
+    } catch (error: unknown) {
       throw error;
-    } finally {
-      await queryRunner.release();
     }
   }
 }
